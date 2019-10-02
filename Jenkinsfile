@@ -6,9 +6,17 @@ def cached_stage=cache.cached_stage
 pipeline {
   agent any
   stages {
-    cached_stage('cached stage', "my_project/${BRANCH_NAME}", ['build']){
+    // need to wrap special stage in the script tag:
+    // https://stackoverflow.com/questions/53201656/extracting-an-entire-jenkins-stage-to-a-shared-library
+    stage('wrapped stage') {
       steps {
-        echo "Caching done here"
+        script {
+          cached_stage('cached stage', "my_project/${BRANCH_NAME}", ['build']){
+            steps {
+              echo "Caching done here"
+            }
+          }
+        }
       }
     }
     stage ('build') {

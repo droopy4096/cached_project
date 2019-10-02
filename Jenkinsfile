@@ -1,7 +1,6 @@
 @Library("jps@job_caching")
 
 def cache=new com.docker.utilities.Cache()
-def cached_stage=cache.cached_stage
 
 pipeline {
   agent any
@@ -11,7 +10,7 @@ pipeline {
     stage('wrapped stage') {
       steps {
         script {
-          cached_stage('cached stage', "my_project/${BRANCH_NAME}", ['build']){
+          cache.cached_stage('cached stage', "my_project/${BRANCH_NAME}", ['build']){
             steps {
               echo "Caching done here"
             }

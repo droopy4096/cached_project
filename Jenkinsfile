@@ -1,4 +1,4 @@
-@Library(jps@job_caching)
+@Library("jps@job_caching")
 
 pipeline {
   agent any

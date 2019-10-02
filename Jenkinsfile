@@ -1,6 +1,6 @@
 @Library("jps@job_caching")
 
-def cache=com.docker.utilities.Cache()
+def cache=new com.docker.utilities.Cache()
 
 pipeline {
   agent any

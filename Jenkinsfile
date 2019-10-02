@@ -7,8 +7,10 @@ pipeline {
   stages {
     stage ('build') {
       steps {
-        cache.withCache("my_project/${BRANCH_NAME}", ['build']) {
-          sh "make"
+        script {
+          cache.withCache("my_project/${BRANCH_NAME}", ['build']) {
+            sh "make"
+          }
         }
       }
     }

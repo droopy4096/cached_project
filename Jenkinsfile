@@ -13,10 +13,14 @@ pipeline {
           cache.withCache("public/my_project/${BRANCH_NAME}", ['build']) {
             sh "make"
           }
-          dir('build'){
-            deleteDir()
-          }
         }
+      }
+    }
+  }
+  post {
+    always {
+      dir('build') {
+        deleteDir()
       }
     }
   }

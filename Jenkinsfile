@@ -13,6 +13,9 @@ pipeline {
           cache.withCache("public/my_project/${BRANCH_NAME}", ['build/part1','build/part2','build/part3']) {
             sh "make"
           }
+          dir('build'){
+            deleteDir()
+          }
         }
       }
     }

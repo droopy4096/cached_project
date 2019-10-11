@@ -10,7 +10,7 @@ pipeline {
     stage ('build') {
       steps {
         script {
-          cache.withCache("public/my_project/${BRANCH_NAME}", ['build/part1','build/part2','build/part3']) {
+          cache.withCache("public/my_project/${BRANCH_NAME}", ['build']) {
             sh "make"
           }
           dir('build'){
